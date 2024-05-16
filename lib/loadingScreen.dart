@@ -1,17 +1,9 @@
+import 'dart:async';
+import 'package:firebase_authentication_app/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-void main() async{
 
-WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const LoadingScreen());
-}
 
 class LoadingScreen extends StatefulWidget {
 
@@ -23,13 +15,19 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> const  LoginScreen()));
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:  Scaffold(
+    return  Scaffold(
         backgroundColor: const Color(0xff3E6DEC),
         body: Center(
           child: Column(
@@ -47,21 +45,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 ),
           
               ),
-             const  SizedBox(height: 30,),
-              Text("Greetings",
-                textAlign :TextAlign.center,style:GoogleFonts.lilitaOne(
-                  textStyle:const  TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white
-          
-                  )
-                ),),
+
 
             ],
           ),
         )
-      ),
-    );
+      );
   }
 }
