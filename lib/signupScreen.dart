@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'components/compCollections.dart';
+import 'forget_password.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -73,7 +74,7 @@ userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(emai
 
                         ),
                       ),
-                      const   SizedBox(height: 20,),
+                      const   SizedBox(height: 10,),
                       UseAbleComp.customTextFormField(
                           controller: emailController,
                           text: "Email",
@@ -84,11 +85,35 @@ userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(emai
                           text: "Password",
                           iconData: Icons.lock,
                           toHide: true),
-
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgetScreen()));
+                              },
+                              child: const Text("Forgot Password?", style: TextStyle(
+                                color: Color(0xff3E6DEC),
+                                decoration: TextDecoration.underline,
+                              ),),
+                            )
+                          ],
+                        ),
+                      ),
+
+
+                      const  SizedBox(height: 30,),
+
+                      UseAbleComp.customButton("Sign Up", () {
+                        SignUp(emailController.text.toString(),passwordController.text.toString());
+                      }),
+                const  SizedBox(height: 10,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const  Text("Already have an account? "),
                             InkWell(
@@ -106,11 +131,6 @@ userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(emai
                           ],
                         ),
                       ),
-                      const  SizedBox(height: 40,),
-
-                      UseAbleComp.customButton("Sign Up", () {
-                        SignUp(emailController.text.toString(),passwordController.text.toString());
-                      }),
                     ],
 
 

@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_authentication_app/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+
+import 'homeScreen.dart';
 
 
 class LoadingScreen extends StatefulWidget {
@@ -15,13 +18,30 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
+  Future checkUser() async {
+
+    final user = FirebaseAuth.instance.currentUser;
+
+    if(user != null){
+
+      Timer(const Duration(seconds: 5), () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const HomeScreen()));
+
+      });
+    }else{
+
+      Timer(const Duration(seconds: 5), () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(const Duration(seconds: 3), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> const  LoginScreen()));
-    });
+    checkUser();
   }
 
 
