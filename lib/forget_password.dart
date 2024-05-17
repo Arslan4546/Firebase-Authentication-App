@@ -15,7 +15,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
 
   ForgetPassword(String email) async {
 
-    if(email==""){
+    if(email == ""){
 
       return UseAbleComp.customAlertBox(context, "Please enter the email first then click on the reset Option \n Thank You");
 
