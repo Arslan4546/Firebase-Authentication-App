@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(onPressed: (){
             LogOut();
           }, icon: const Icon(Icons.logout,size: 30,)),
-          SizedBox(width: 10,),
+         const  SizedBox(width: 10,),
         ],
       ),
 

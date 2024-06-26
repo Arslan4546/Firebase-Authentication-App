@@ -3,7 +3,6 @@ import 'package:firebase_authentication_app/forget_password.dart';
 import 'package:firebase_authentication_app/signupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'components/compCollections.dart';
 import 'homeScreen.dart';
 
